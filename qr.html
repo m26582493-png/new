@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>USDT Deposit</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .deposit-box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    #qrcode {
+      margin: 20px auto;
+    }
+    .wallet-address {
+      font-size: 16px;
+      margin: 15px 0;
+      padding: 10px;
+      background: #f1f1f1;
+      border-radius: 6px;
+      word-break: break-all;
+    }
+    button.copy-btn {
+      padding: 10px 20px;
+      background-color: #0d6efd;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button.copy-btn:hover {
+      background-color: #0a58ca;
+    }
+  </style>
+</head>
+<body>
+<!--
+<div class="deposit-box">
+  <h2>Deposit USDT</h2>
+  <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT" style="width:40px; margin-bottom: 10px;">
+
+  <div id="qrcode"></div>
+  <div class="wallet-address" id="walletAddress">TRc9Lxyz9HaByxM8F29HwKeABC12345678</div>
+  <button class="copy-btn" onclick="copyToClipboard()">Copy Address</button>
+  <p id="copiedMsg" style="color: green; display: none;">Copied to clipboard!</p>
+</div>-->
+<!--nowpay-->
+
+
+<iframe src="https://nowpayments.io/embeds/payment-widget?iid=4544589014" width="410" height="696" frameborder="0" scrolling="no" style="overflow-y: hidden;">
+    Can't load widget
+</iframe>
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<script>
+  const address = document.getElementById("walletAddress").textContent;
+
+  // Generate QR Code
+  QRCode.toCanvas(document.getElementById('qrcode'), address, {
+    width: 180,
+    margin: 1
+  }, function (error) {
+    if (error) console.error(error);
+  });
+
+  // Copy to clipboard function
+  function copyToClipboard() {
+    navigator.clipboard.writeText(address).then(() => {
+      const msg = document.getElementById('copiedMsg');
+      msg.style.display = 'block';
+      setTimeout(() => msg.style.display = 'none', 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
